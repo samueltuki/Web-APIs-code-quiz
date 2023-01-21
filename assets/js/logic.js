@@ -2,20 +2,26 @@ let currentQuestionIndex = 0;
 let timeCount = 60;
 let timer
 
+
 // DOM elements variables
 let startScreen = document.querySelector("#start-screen");
 let questionEl = document.querySelector("#questions");
 let startBtn = document.querySelector("#start");
 let timeEl = document.querySelector ("#time");
 let choiceEl = document.querySelector ("#choices");
+
+
+
+let questionTitle = document.querySelector("#question-title");
+
  
 
 function quizStart() {
     // hiding the start screen
-   startScreen.setAttribute ("class", "hide");
+   startScreen.classList.add("hide");
 
     // unhide the question section
-    questionEl.removeAttribute("class");
+    questionEl.classList.remove("hide");
 
     // starting timer/setting interval
     timer = setInterval(() => {
@@ -24,26 +30,48 @@ function quizStart() {
 
     }, 1000); 
     retrieveQuestion()
-}
+};
 startBtn.addEventListener("click", quizStart);
 
 
 function retrieveQuestion(){
+
+    //   presents the first question
+    questionTitle.textContent = question[currentQuestionIndex].title;
+
+    //  presents the choices to first question
+    
+  
+    choiceEl.innerHTML = "";
+
+    for (let i = 0; i < question[currentQuestionIndex].choices.length; i++) {
+    let choice = question[currentQuestionIndex].choices[i];
+
+    let choiceBtn = document.createElement("button")
    
-    let questionTitle = document.querySelector("#question-title");
-    questionTitle.textContent = (question[0].title);
-    console.log(questionTitle);
+    choiceBtn.classList.add("js-choice")
+    choiceBtn.textContent = choice;
 
-    // choiceEl.innerHTML = "";
+    choiceBtn.addEventListener("click", function(e){
+        
+        let clickedBtnChoice = e.target.textContent
+        // console.log(clickedBtnChoice);
+        let relatedQuestionAnswer = question[currentQuestionIndex].answer;
+        // console.log(relatedQuestionAnswer);
 
-// for (let i = 0; i < currentQuestion.choices.length; i++) {
-//     // creating choice button
-//     let choice = currentQuestion.choices[i];
-// let choiceBtn = document.createElement("button")
-//     choiceBtn.setAttribute("class", "choice");
-//     choiceBtn.setAttribute("value", choice);
+        if (clickedBtnChoice === relatedQuestionAnswer) {
+            console.log("correct");
+        }
 
-    choiceBtn.textContent = question[0].choices[0];
-//     choiceEl.appendChild(choiceBtn.textContent);
-// }
+        // currentQuestionIndex++;
+        // retrieveQuestion();
+    
+    })
+
+    choiceEl.appendChild(choiceBtn)
+     
+   }
+
+ 
 }
+
