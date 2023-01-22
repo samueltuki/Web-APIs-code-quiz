@@ -8,6 +8,11 @@ let question = [
         title: "Which of these is NOT a arithmetic operator?",
            choices: ["-", "*", "&&", "+"],
            answer: "&&"
+    },
+    {
+        title: "Which of these is a dev tool?",
+           choices: ["playstation", "xbox", "nintendo", "Vscode"],
+           answer: "Vscode"
     }
 ]
 
