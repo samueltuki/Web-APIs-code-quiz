@@ -23,4 +23,4 @@ function clearScores(){
     window.location.reload()
 }
 clearBtn.addEventListener("click", clearScores);
-printScores();vjvyy 
+printScores();

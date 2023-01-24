@@ -27,7 +27,9 @@ function quizStart() {
 }
 startBtn.addEventListener("click", quizStart);
 
+
 function startTime() {
+  // sets the timer
   timer = setInterval(() => {
     timeEl.textContent = timeCount;
     timeCount--;
@@ -56,9 +58,8 @@ function retrieveQuestion() {
       let clickedBtnChoice = e.target.textContent;
       //   console.log(clickedBtnChoice);
       let relatedQuestionAnswer = question[currentQuestionIndex].answer;
-      // console.log(relatedQuestionAnswer);
 
-      // user penalty
+      // user penalty condition (if a wrong answer is chosen)
       if (clickedBtnChoice !== relatedQuestionAnswer) {
         timeCount -= 10;
         if (timeCount < 0) {
@@ -76,6 +77,7 @@ function retrieveQuestion() {
         feedBackEl.classList.add("hide");
       }, 1000);
 
+    // ending the quiz after the last question
       currentQuestionIndex++;
       if (currentQuestionIndex === question.length) {
         endQuiz();
@@ -90,6 +92,7 @@ function retrieveQuestion() {
 }
 
 function endQuiz() {
+  // clears the timer
   clearInterval(timer);
   endScreenE1.classList.remove("hide");
   finalScore.textContent = timeCount;
@@ -98,6 +101,8 @@ function endQuiz() {
 
 function saveScore() {
   let userInitials = initialsEl.value.trim();
+
+  // requesting users initials input
   if (userInitials) {
     let highScore = JSON.parse(window.localStorage.getItem("highScores")) || [];
 
