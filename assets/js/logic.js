@@ -99,7 +99,7 @@ function endQuiz() {
 function saveScore() {
   let userInitials = initialsEl.value.trim();
   if (userInitials) {
-    let highScore = JSON.parse(localStorage.getItem("highScores")) || [];
+    let highScore = JSON.parse(window.localStorage.getItem("highScores")) || [];
 
     let newScore = {
       score: timeCount,
@@ -107,7 +107,7 @@ function saveScore() {
     };
 
     highScore.push(newScore);
-    localStorage.setItem("highScores", JSON.stringify(highScore));
+    window.localStorage.setItem("highScores", JSON.stringify(highScore));
 
     window.location.href = "/highscores.html";
   } else {

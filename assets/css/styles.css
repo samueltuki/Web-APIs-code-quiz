@@ -86,3 +86,19 @@ li:nth-child(odd) {
   top: 10px;
   right: 10px;
 }
+
+.choices {
+  counter-reset: count;
+}
+
+.choices button::before {
+  counter-increment: count;
+  content: counter(count) ". ";
+}
+
+#start-screen, #questions, #end-screen { 
+  background-color: rgb(133, 224, 224);
+  box-shadow: 10px 5px 5px rgb(111, 60, 60);
+  border-radius: 12px;
+}
+
